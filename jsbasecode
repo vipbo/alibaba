@@ -1,0 +1,73 @@
+let arr = [1, 2, 3, 4, 5, 1, 2, 3];
+
+		function noRepeat(arr) {
+			let arr1 = [];
+			for (let i = 0, len = arr.length; i < len; i++) {
+				if (arr1.indexOf(arr[i]) === -1) {
+					arr1.push(arr[i])
+				}
+			}
+			return arr1;
+		}
+		let res = noRepeat(arr);
+		// console.log('res', res)
+
+		let arr2 = Array.from(new Array(10000), (item, index) => {
+			return index;
+		})
+
+		// 测试10万条耗时操作
+		let start = new Date().getTime();
+		noRepeat(arr2)
+		let end = new Date().getTime();
+		let useTime = end - start;
+
+		let arr5 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+		let res5 = arr5.slice(2)
+
+		console.log('res5', res5)
+		console.log('arr5', arr5)
+
+
+
+		let arr6 = [1, 1, 2, 3, 4, 5, 6, 6, 4, 3]
+		console.log(new Set(arr6))
+		console.log(Array.from(new Set(arr6)))
+    
+    
+    
+    /////  利用对象的属性名字不重复的特点进行数组去重，性能贼高 有点吓人，100万条数据 125ms,是双重for循环性能的100倍
+    
+  let arr = [1, 2, 3, 4, 5, 1, 2, 3, 1, 1, 2];
+
+
+        function noRepeat(arr) {
+            let obj = {},
+                arr1 = [],
+                i,
+                len = arr.length;
+            for (i of arr) {
+                if (!obj[i]) {
+                    obj[i] = i;
+                    arr1.push(i)
+                }
+            }
+            return arr1;
+        }
+
+        let res = noRepeat(arr)
+        // console.log('res', res)
+        let arr2 = Array.from(new Array(1000000), (item, index) => {
+            return index;
+        })
+
+
+        let start = new Date().getTime();
+        noRepeat(arr2)
+        let end = new Date().getTime();
+        let useTime = end - start;
+
+        console.log('useTime', useTime)
+    
+    
+    
